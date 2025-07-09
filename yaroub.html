@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ar"> 
+ <head></head> 
+ <body> 
+  <h1> Hello </h1> 
+  <div>
+    This is a html example from Dcoder, 
+   <br> have fun. :) 
+  </div> ‎ ‎ ‎ ‎ 
+  <meta charset="UTF-8"> ‎ 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> ‎ 
+  <title>كلية الهندسة المدنية</title> ‎ 
+  <style>
+‎    body { font-family: Arial, sans-serif; direction: rtl; background: #f0f0f0; margin: 0; padding: 0; }
+‎    .login-container, .main-container { max-width: 500px; margin: 100px auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+‎    h1, h2 { text-align: center; }
+‎    input, button { width: 100%; padding: 10px; margin: 10px 0; }
+‎    .hidden { display: none; }
+‎    .year-list button { width: 100%; margin: 5px 0; }
+‎    .material-list a { display: block; margin: 5px 0; color: #0066cc; text-decoration: none; }
+‎  </style> ‎ ‎ ‎ 
+  <div class="login-container" id="loginBox">
+    ‎ 
+   <h1>كلية الهندسة المدنية</h1> ‎ 
+   <h2>موقع المهندس يعرب ناصيف</h2> ‎ 
+   <input type="text" id="username" placeholder="اسم المستخدم"> ‎ 
+   <input type="password" id="password" placeholder="كلمة السر"> ‎ <button onclick="login()">دخول</button> ‎ 
+   <p id="loginError" style="color:red; text-align:center;"></p> ‎ 
+  </div> ‎ ‎ 
+  <div class="main-container hidden" id="mainBox">
+    ‎ 
+   <h1>مرحباً بك في الموقع</h1> ‎ 
+   <h3>اختر السنة الدراسية</h3> ‎ 
+   <div class="year-list">
+     ‎ <button onclick="showMaterials('first')">السنة الأولى</button> ‎ <button onclick="showMaterials('second')">السنة الثانية</button> ‎ <button onclick="showMaterials('third')">السنة الثالثة</button> ‎ <button onclick="showMaterials('fourth')">السنة الرابعة</button> ‎ <button onclick="showMaterials('fifth')">السنة الخامسة</button> ‎ 
+   </div> ‎ 
+  </div> ‎ ‎ 
+  <div class="main-container hidden" id="materialBox">
+    ‎ 
+   <h2 id="yearTitle"></h2> ‎ 
+   <div class="material-list" id="materialList"></div> ‎ <button onclick="backToMain()">رجوع</button> ‎ 
+  </div> ‎ ‎ 
+  <script>
+‎  const users = {
+‎    "yaroub": "1234567890",
+‎    "samir": "0987654321",
+‎    "sara": "0992325041"
+‎  };
+‎
+‎  function login() {
+‎    const u = document.getElementById("username").value;
+‎    const p = document.getElementById("password").value;
+‎    if (users[u] === p) {
+‎      document.getElementById("loginBox").classList.add("hidden");
+‎      document.getElementById("mainBox").classList.remove("hidden");
+‎    } else {
+‎      document.getElementById("loginError").innerText = "اسم المستخدم أو كلمة المرور غير صحيحة";
+‎    }
+‎  }
+‎</script> ‎ ‎ ‎ const materials = { ‎ first: [ ‎ { name: "محاضرة المساحة 1", url: "#" }, ‎ { name: "ملزمة رياضيات 1", url: "#" } ‎ ], ‎ second: [ ‎ { name: "محاضرة خرسانة", url: "#" } ‎ ], ‎ third: [], ‎ fourth: [], ‎ fifth: [] ‎ }; ‎ ‎ function showMaterials(year) { ‎ document.getElementById("mainBox").classList.add("hidden"); ‎ document.getElementById("materialBox").classList.remove("hidden"); ‎ document.getElementById("yearTitle").innerText = `مواد ${translateYear(year)}`; ‎ const list = document.getElementById("materialList"); ‎ list.innerHTML = ""; ‎ materials[year].forEach(item =&gt; { ‎ const a = document.createElement("a"); ‎ a.href = item.url; ‎ a.innerText = item.name; ‎ a.target = "_blank"; ‎ list.appendChild(a); ‎ }); ‎ } ‎ ‎ function translateYear(code) { ‎ return { ‎ first: "السنة الأولى", ‎ second: "السنة الثانية", ‎ third: "السنة الثالثة", ‎ fourth: "السنة الرابعة", ‎ fifth: "السنة الخامسة" ‎ }[code]; ‎ } ‎ ‎ function backToMain() { ‎ document.getElementById("materialBox").classList.add("hidden"); ‎ document.getElementById("mainBox").classList.remove("hidden"); ‎ } ‎ ‎ ‎ ‎
+ 
+</body></html>
