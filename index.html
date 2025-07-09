@@ -1,108 +1,167 @@
-
+index.html
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>كلية الهندسة المدنية</title>
-  <style>
-    body { font-family: Arial, sans-serif; direction: rtl; background: #f0f0f0; margin: 0; padding: 0; }
-    .login-container, .main-container { max-width: 500px; margin: 100px auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    h1, h2 { text-align: center; }
-    input, button { width: 100%; padding: 10px; margin: 10px 0; }
-    .hidden { display: none; }
-    .year-list button { width: 100%; margin: 5px 0; }
-    .material-list a { display: block; margin: 5px 0; color: #0066cc; text-decoration: none; }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>كلية الهندسة المدنية</title>
+  <style>
+    body { font-family: Arial, sans-serif; direction: rtl; background: #f0f0f0; margin: 0; padding: 0; }
+    .login-container, .main-container { max-width: 500px; margin: 100px auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    h1, h2 { text-align: center; }
+    input, button { width: 100%; padding: 10px; margin: 10px 0; }
+    .hidden { display: none; }
+    .year-list button { width: 100%; margin: 5px 0; }
+    .material-list a { display: block; margin: 5px 0; color: #0066cc; text-decoration: none; }
+  </style>
 </head>
 <body>
-  <div class="login-container" id="loginBox">
-    <h1>كلية الهندسة المدنية</h1>
-    <h2>موقع المهندس يعرب ناصيف</h2>
-    <input type="text" id="username" placeholder="اسم المستخدم">
-    <input type="password" id="password" placeholder="كلمة السر">
-    <button onclick="login()">دخول</button>
-    <p id="loginError" style="color:red; text-align:center;"></p>
-  </div>
-
-  <div class="main-container hidden" id="mainBox">
-    <h1>مرحباً بك في الموقع</h1>
-    <h3>اختر السنة الدراسية</h3>
-    <div class="year-list">
-      <button onclick="showMaterials('first')">السنة الأولى</button>
-      <button onclick="showMaterials('second')">السنة الثانية</button>
-      <button onclick="showMaterials('third')">السنة الثالثة</button>
-      <button onclick="showMaterials('fourth')">السنة الرابعة</button>
-      <button onclick="showMaterials('fifth')">السنة الخامسة</button>
-    </div>
-  </div>
-
-  <div class="main-container hidden" id="materialBox">
-    <h2 id="yearTitle"></h2>
-    <div class="material-list" id="materialList"></div>
-    <button onclick="backToMain()">رجوع</button>
-  </div>
-
-  <script>
-    const users = {
-      "student1": "pass1",
-      "student2": "pass2",
-      "student3": "pass3"
-    };
-
-    function login() {
-      const u = document.getElementById("username").value;
-      const p = document.getElementById("password").value;
-      if (users[u] === p) {
-        document.getElementById("loginBox").classList.add("hidden");
-        document.getElementById("mainBox").classList.remove("hidden");
-      } else {
-        document.getElementById("loginError").innerText = "اسم المستخدم أو كلمة المرور غير صحيحة";
-      }
-    }
-
-    const materials = {
-      first: [
-        { name: "محاضرة المساحة 1", url: "#" },
-        { name: "ملزمة رياضيات 1", url: "#" }
-      ],
-      second: [
-        { name: "محاضرة خرسانة", url: "#" }
-      ],
-      third: [],
-      fourth: [],
-      fifth: []
-    };
-
-    function showMaterials(year) {
-      document.getElementById("mainBox").classList.add("hidden");
-      document.getElementById("materialBox").classList.remove("hidden");
-      document.getElementById("yearTitle").innerText = `مواد ${translateYear(year)}`;
-      const list = document.getElementById("materialList");
-      list.innerHTML = "";
-      materials[year].forEach(item => {
-        const a = document.createElement("a");
-        a.href = item.url;
-        a.innerText = item.name;
-        a.target = "_blank";
-        list.appendChild(a);
-      });
-    }
-
-    function translateYear(code) {
-      return {
-        first: "السنة الأولى",
-        second: "السنة الثانية",
-        third: "السنة الثالثة",
-        fourth: "السنة الرابعة",
-        fifth: "السنة الخامسة"
-      }[code];
-    }
-
-    function backToMain() {
-      document.getElementById("materialBox").classList.add("hidden");
-      document.getElementById("mainBox").classList.remove("hidden");
-    }
-  </script>
+  <div class="login-container" id="loginBox">
+    <h1>كلية الهندسة المدنية</h1>
+    <h2>موقع يتضمن كافة الملازم والمحاضرات الخاصة بكلية الهندسة المدنية </h2>
+    <input type="text" id="username" placeholder="اسم المستخدم">
+    <input type="password" id="password" placeholder="كلمة السر">
+    <button onclick="login()">دخول</button>
+    <p id="loginError" style="color:red; text-align:center;"></p>
+  </div>
+  <div class="main-container hidden" id="mainBox">
+    <h1>مرحباً بك في الموقع</h1>
+    <h3>اختر السنة الدراسية</h3>
+    <div class="year-list">
+      <button onclick="showMaterials('first')">السنة الأولى</button>
+      <button onclick="showMaterials('second')">السنة الثانية</button>
+      <button onclick="showMaterials('third')">السنة الثالثة</button>
+      <button onclick="showMaterials('fourth')">السنة الرابعة</button>
+      <button onclick="showMaterials('fifth')">السنة الخامسة</button>
+    </div>
+  </div>
+  <div class="main-container hidden" id="materialBox">
+    <h2 id="yearTitle"></h2>
+    <div class="material-list" id="materialList"></div>
+    <button onclick="backToMain()">رجوع</button>
+  </div>
+  <script>
+  const users = {
+    "yaroub": "1234",
+    "samir": "1234",
+    "sara": "1234"
+  };
+  function login() {
+    const u = document.getElementById("username").value;
+    const p = document.getElementById("password").value;
+    if (users[u] === p) {
+      document.getElementById("loginBox").classList.add("hidden");
+      document.getElementById("mainBox").classList.remove("hidden");
+    } else {
+      document.getElementById("loginError").innerText = "اسم المستخدم أو كلمة المرور غير صحيحة";
+    }
+  }
+</script>
+    const materials = {
+      first: [
+        { name: "تمثيل المنشآت المدنية", url: "#" },
+        { name: "الهندسة الوصفية والرسم الهندسي", url: "#" }
+ { name: "ميكانيك هندسي 1", url: "#" },
+ { name: "ميكانيك هندسي 2", url: "#" },
+ { name: "الفيزياء للمهندسين", url: "#" },
+ { name: "الكيمياء للمهندسين", url: "#" },
+ { name: "الرياضيات الهندسية 1", url: "#" },
+ { name: "الرياضيات الهندسية 2", url: "#" },
+ { name: "اسس معلوماتية", url: "#" },
+ { name: "البرمجة والخوارزميات", url: "#" },
+ { name: "اللغة العربية", url: "#" },
+ { name: "الثقافة العربية الاشتراكية", url: "#" },
+ { name: "اللغة الانكليزية 1", url: "#" },
+ { name: "اللغة الانكليزية 2", url: "#" },
+      ],
+      second: [
+        { name: "مقاومة مواد 1", url: "#" }
+   { name: "مقاومة مواد 2", url: "#" }
+   { name: "مساحة 1", url: "#" }
+   { name: "مساحة 2", url: "#" }
+   { name: "ميكانيك سوائل", url: "#" }
+   { name: "هيدروليك", url: "#" }
+   { name: "انشاء مباني 1", url: "#" }
+   { name: "انشاء مباني 2", url: "#" }
+   { name: "الجبر الخطي و المعادلات التفاضلية", url: "#" }
+   { name: "الاحصاء  و الاحتمالات", url: "#" }
+   { name: "الجيولوجيا الهندسيه", url: "#" }
+   { name: "مواد البناء و اختباراتها", url: "#" }
+   { name: "لغة 3", url: "#" }
+   { name: "لغة 4", url: "#" }
+      ],
+      third: [
+   { name"ميكانيك الانشاءات 1", url: "#" }
+   { name: "ميكانيك الانشاءات 2", url: "#" }
+   { name: "الخرسانة المسلحة 1", url: "#" }
+   { name: "الخرسانة المسلحة 2", url: "#" }
+   { name: "ميكانيك التربة 1", url: "#" }
+   { name: "ميكانيك التربة 2", url: "#" }
+   { name: "تكنولوجيا مواد البناء", url: "#" }
+   { name: "هندسة الطرق", url: "#" }
+   { name: "التجهيزات الفنية للمباني", url: "#" }
+   { name: "الهيدرولوجيا الهندسية", url: "#" }
+   { name: "هندسة الري والصرف", url: "#" }
+   { name: "هندسة النقل والمرور", url: "#" }
+   { name: "جيوديزيا 1", url: "#" }
+   { name: "مخلفات صلبة ومعالجتها", url: "#" }
+],
+      fourth: [
+   { name: "ميكانيك انشاءات 3", url: "#" }
+   { name: "هندسة الاساسات 1", url: "#" }
+   { name: "هندسة الاساسات 2", url: "#" }
+   { name: "جيوديزيا 2", url: "#" }
+   { name: "هندسة السكك الحديديه", url: "#" }
+   { name: "المنشآت المعدنية 1", url: "#" }
+   { name: "المنشآت المعدنية 2", url: "#" }
+   { name: "هندسة السدود", url: "#" }
+   { name: "شبكات مياه الصرف الصحي", url: "#" }
+   { name: "المنشآت المائية", url: "#" }
+   { name: "ديناميك الانشاءات والهندسة الزلزالية", url: "#" }
+   { name: "شبكات مياه الشرب", url: "#" }
+   { name: "الخرسانة المسلحة 3", url: "#" }
+   { name: "تكنولوجيا التشييد 1", url: "#" }
+],
+      fifth: [
+   { name: "هندسة المطارات", url: "#" }
+   { name: "هندسة المرافئ", url: "#" }
+   { name: "المنشآت المختلطة", url: "#" }
+   { name: "اقتصاد هندسي", url: "#" }
+   { name: "معالجة مياه الصرف الصحي", url: "#" }
+   { name: "تصميم بمعونة الحاسب", url: "#" }
+   { name: "تنقية مياه الشرب", url: "#" }
+   { name: "تكنولوجيا التشييد 2", url: "#" }
+   { name: "إدارة المشاريع الهندسية", url: "#" }
+   { name: "المنشآت الخرسانية الخاصة", url: "#" }
+]
+    };
+    function showMaterials(year) {
+      document.getElementById("mainBox").classList.add("hidden");
+      document.getElementById("materialBox").classList.remove("hidden");
+      document.getElementById("yearTitle").innerText = `مواد ${translateYear(year)}`;
+      const list = document.getElementById("materialList");
+      list.innerHTML = "";
+      materials[year].forEach(item => {
+        const a = document.createElement("a");
+        a.href = item.url;
+        a.innerText = item.name;
+        a.target = "_blank";
+        list.appendChild(a);
+      });
+    }
+    function translateYear(code) {
+      return {
+        first: "السنة الأولى",
+        second: "السنة الثانية",
+        third: "السنة الثالثة",
+        fourth: "السنة الرابعة",
+        fifth: "السنة الخامسة"
+      }[code];
+    }
+    function backToMain() {
+      document.getElementById("materialBox").classList.add("hidden");
+      document.getElementById("mainBox").classList.remove("hidden");
+    }
+  </script>
 </body>
 </html>
